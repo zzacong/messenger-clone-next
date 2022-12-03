@@ -1,8 +1,8 @@
-import { type inferAsyncReturnType } from "@trpc/server";
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
-import { type Session } from "next-auth";
+import { type inferAsyncReturnType } from '@trpc/server';
+import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
+import { type Session } from 'next-auth';
 
-import { getServerAuthSession } from "../common/get-server-auth-session";
+import { getServerAuthSession } from '../common/get-server-auth-session';
 
 type CreateContextOptions = {
   session: Session | null;

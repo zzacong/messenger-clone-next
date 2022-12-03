@@ -1,6 +1,6 @@
-import NextAuth, { type NextAuthOptions } from "next-auth";
+import NextAuth, { type NextAuthOptions } from 'next-auth';
 
-import { env } from "../../../env/server.mjs";
+import { env } from '../../../env/server.mjs';
 
 export const authOptions: NextAuthOptions = {
   // Include user.id on session

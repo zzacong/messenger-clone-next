@@ -3,14 +3,14 @@
 import { type Message, messageSchema } from '$types';
 
 import { useCallback, useState } from 'react';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import cuid from 'cuid';
-import { useMutation } from '@tanstack/react-query';
 
 const sendMessageToUpstash = async (message: Message) => {
   const res = await fetch('/api/addMessage', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ message }),
+    body: JSON.stringify({ ...message }),
   });
   const data = await res.json();
   return messageSchema.parse(data);
@@ -18,7 +18,35 @@ const sendMessageToUpstash = async (message: Message) => {
 
 export default function ChatInput() {
   const [input, setInput] = useState('');
-  const sendMessageMut = useMutation({ mutationFn: sendMessageToUpstash });
+  const queryClient = useQueryClient();
+
+  // optimistic updates
+  const sendMessageMut = useMutation({
+    mutationFn: sendMessageToUpstash,
+    // When mutate is called:
+    onMutate: async newTodo => {
+      // Cancel any outgoing refetches
+      // (so they don't overwrite our optimistic update)
+      await queryClient.cancelQueries({ queryKey: ['get-messages'] });
+      // Snapshot the previous value
+      const previousMessages = queryClient.getQueryData<Message[]>(['get-messages']);
+      // Optimistically update to the new value
+      queryClient.setQueryData<Message[]>(['get-messages'], old =>
+        old ? [...old, newTodo] : [newTodo]
+      );
+      // Return a context object with the snapshotted value
+      return { previousMessages };
+    },
+    // If the mutation fails,
+    // use the context returned from onMutate to roll back
+    onError: (err, newTodo, ctx) => {
+      queryClient.setQueryData(['get-messages'], ctx?.previousMessages);
+    },
+    // Always refetch after error or success:
+    onSettled: () => {
+      queryClient.invalidateQueries({ queryKey: ['get-messages'] });
+    },
+  });
 
   const onSubmit: React.FormEventHandler = useCallback(
     async e => {
@@ -35,8 +63,7 @@ export default function ChatInput() {
         email: 'zacong@example.com',
         createdAt: Date.now(),
       };
-      const data = await sendMessageMut.mutateAsync(message);
-      console.log('🚀 ~ file: ChatInput.tsx:38 ~ ChatInput ~ data', data);
+      await sendMessageMut.mutateAsync(message);
     },
     [input, sendMessageMut]
   );
@@ -44,7 +71,7 @@ export default function ChatInput() {
   return (
     <form
       onSubmit={onSubmit}
-      className="fixed inset-x-0 bottom-0 z-50 flex space-x-2 border-t border-gray-100 px-10 py-5"
+      className="fixed inset-x-0 bottom-0 z-50 flex space-x-2 border-t border-gray-100 bg-white px-10 py-5"
     >
       <input
         type="text"

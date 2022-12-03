@@ -19,14 +19,14 @@ const notoSansMono = Noto_Sans_Mono({
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClientProvider>
-      <html lang="en" className={clsx(raleway.variable, notoSansMono.variable)}>
-        <head />
-        <body>
+    <html lang="en" className={clsx(raleway.variable, notoSansMono.variable)}>
+      <head />
+      <body>
+        <ClientProvider>
           <Header />
           {children}
-        </body>
-      </html>
-    </ClientProvider>
+        </ClientProvider>
+      </body>
+    </html>
   );
 }

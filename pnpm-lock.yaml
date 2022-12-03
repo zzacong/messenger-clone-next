@@ -15,6 +15,7 @@ specifiers:
   '@upstash/redis': ^1.18.1
   autoprefixer: ^10.4.7
   clsx: ^1.2.1
+  cuid: ^2.1.8
   eslint: ^8.26.0
   eslint-config-next: 13.0.2
   next: 13.0.6
@@ -52,6 +53,7 @@ devDependencies:
   '@typescript-eslint/eslint-plugin': 5.45.0_yjegg5cyoezm3fzsmuszzhetym
   '@typescript-eslint/parser': 5.45.0_s5ps7njkmjlaqajutnox5ntcla
   autoprefixer: 10.4.13_postcss@8.4.19
+  cuid: 2.1.8
   eslint: 8.29.0
   eslint-config-next: 13.0.2_s5ps7njkmjlaqajutnox5ntcla
   postcss: 8.4.19
@@ -813,6 +815,10 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+    dev: true
+
+  /cuid/2.1.8:
+    resolution: {integrity: sha512-xiEMER6E7TlTPnDxrM4eRiC6TRgjNX9xzEZ5U/Se2YJKr7Mq4pJn/2XEHjl3STcSh96GmkHPcBXLES8M29wyyg==}
     dev: true
 
   /damerau-levenshtein/1.0.8:

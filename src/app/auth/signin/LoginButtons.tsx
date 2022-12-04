@@ -14,7 +14,7 @@ export default function LoginButtons({ providers }: LoginButtonsProps) {
           <div key={pr.id}>
             <button
               onClick={() => signIn(pr.id, { callbackUrl: '/' })}
-              className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700"
+              className="rounded-lg bg-blue-500 px-8 py-3 font-bold text-white hover:bg-blue-700"
             >
               Sign in with {pr.name}
             </button>

@@ -1,12 +1,18 @@
 import Image from 'next/image';
 import { getProviders } from 'next-auth/react';
-import LoginButtons from '$app/LoginButtons';
+import { redirect } from 'next/navigation';
+
+import { getServerAuthSession } from '$server/common/get-server-auth-session';
+import LoginButtons from './LoginButtons';
 
 export default async function SignInPage() {
+  const session = await getServerAuthSession();
+  if (session) redirect('/');
+
   const providers = await getProviders();
 
   return (
-    <div className="grid justify-center">
+    <div className="flex flex-1 flex-col items-center justify-center gap-6">
       <div>
         <Image
           src="/logo.svg"

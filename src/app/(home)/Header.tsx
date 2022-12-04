@@ -1,13 +1,14 @@
-import { asyncComponent } from '$lib/async-component';
-import { generateImageUrl } from '$lib/random-image-url';
-import { unstable_getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { asyncComponent } from '$lib/async-component';
+import { generateImageUrl } from '$lib/random-image-url';
+import { getServerAuthSession } from '$server/common/get-server-auth-session';
 
 import LogoutButton from './LogoutButton';
 
 async function Header() {
-  const session = await unstable_getServerSession();
+  const session = await getServerAuthSession();
 
   if (session?.user) {
     return (

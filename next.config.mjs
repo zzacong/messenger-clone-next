@@ -23,6 +23,11 @@ const config = {
         hostname: 'avatars.dicebear.com',
         pathname: '/api/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'platform-lookaside.fbsbx.com',
+        pathname: '/platform/profilepic/**',
+      },
     ],
   },
 };

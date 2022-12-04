@@ -9,11 +9,9 @@ export default async function HomePage() {
   await new Promise(res => setTimeout(res, 1000));
 
   return (
-    <>
-      <main className="">
-        <MessageList initialMessages={messages} />
-        <ChatInput />
-      </main>
-    </>
+    <main>
+      <MessageList initialMessages={messages} />
+      <ChatInput />
+    </main>
   );
 }

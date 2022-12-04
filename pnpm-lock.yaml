@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@next-auth/upstash-redis-adapter': ^3.0.3
   '@next/font': ^13.0.6
   '@tanstack/react-query': ^4.16.0
   '@trpc/client': ^10.0.0
@@ -33,6 +34,7 @@ specifiers:
   zod: ^3.18.0
 
 dependencies:
+  '@next-auth/upstash-redis-adapter': 3.0.3_pnwh7fhazfefccysd676na2e6m
   '@next/font': 13.0.6
   '@tanstack/react-query': 4.19.0_biqbaboplfbrettd7655fr4n2y
   '@trpc/client': 10.4.3_@trpc+server@10.4.3
@@ -118,6 +120,17 @@ packages:
   /@humanwhocodes/object-schema/1.2.1:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
+
+  /@next-auth/upstash-redis-adapter/3.0.3_pnwh7fhazfefccysd676na2e6m:
+    resolution: {integrity: sha512-AH3FEZtWDjS7U0RZyB/5RJaPa2ZRWlU5n0fa3rLnyX5FMR0jmpz5yRxqSKgohs9QfC66K/rOBvZOlAKQF1GTgw==}
+    peerDependencies:
+      '@upstash/redis': ^1.0.1
+      next-auth: ^4
+    dependencies:
+      '@upstash/redis': 1.18.1
+      next-auth: 4.17.0_6jx7hpii6hgsrmhxgqrmo3277u
+      uuid: 8.3.2
+    dev: false
 
   /@next/env/13.0.6:
     resolution: {integrity: sha512-yceT6DCHKqPRS1cAm8DHvDvK74DLIkDQdm5iV+GnIts8h0QbdHvkUIkdOvQoOODgpr6018skbmSQp12z5OWIQQ==}

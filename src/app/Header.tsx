@@ -1,12 +1,15 @@
+import { asyncComponent } from '$lib/async-component';
+import { generateImageUrl } from '$lib/random-image-url';
+import { unstable_getServerSession } from 'next-auth';
 import Image from 'next/image';
 import Link from 'next/link';
 
 import LogoutButton from './LogoutButton';
 
-const session = true;
+async function Header() {
+  const session = await unstable_getServerSession();
 
-export default function Header() {
-  if (session) {
+  if (session?.user) {
     return (
       <header className="sticky top-0 z-50 flex items-center justify-between bg-white p-10 shadow-sm">
         <div className="flex space-x-2">
@@ -14,14 +17,14 @@ export default function Header() {
             className="mx-2 rounded-full object-contain"
             height={10}
             width={50}
-            src="https://avatars.dicebear.com/api/human/042fba3e3d184206.svg"
+            src={session.user.image ?? generateImageUrl()}
             alt="Profile picture"
           />
 
           <div>
             <p>
               <span className="block text-blue-400">Logged in as:</span>
-              <span className="block text-lg font-bold">Zac Ong</span>
+              <span className="block text-lg font-bold">{session.user.name}</span>
             </p>
           </div>
         </div>
@@ -48,3 +51,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default asyncComponent(Header);

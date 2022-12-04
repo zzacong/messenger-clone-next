@@ -10,6 +10,6 @@ const queryClient = new QueryClient({
   },
 });
 
-export function ClientProvider({ children }: React.PropsWithChildren<unknown>) {
+export function QueryProvider({ children }: React.PropsWithChildren<unknown>) {
   return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
 }

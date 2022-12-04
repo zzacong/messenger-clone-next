@@ -1,16 +1,26 @@
 import { type Message } from '$types';
+
+import { useSession } from 'next-auth/react';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useMemo } from 'react';
 
 type MessageBubbleProps = { message: Message };
 
-const isMe = true;
-
 export default function MessageBubble({ message: m }: MessageBubbleProps) {
+  const { data: session } = useSession();
+  const isMe = useMemo(() => session?.user?.email === m.email, [m.email, session?.user?.email]);
+
   return (
     <div className={clsx('flex w-fit gap-2', isMe && 'ml-auto')}>
       <div className={clsx('grid flex-shrink-0 place-items-center', isMe && 'order-2')}>
-        <Image src={m.profilePic} height={10} width={50} alt="Profile picture" />
+        <Image
+          src={m.profilePic}
+          height={10}
+          width={50}
+          alt="Profile picture"
+          className="rounded-full"
+        />
       </div>
 
       <div>

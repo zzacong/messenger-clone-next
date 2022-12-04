@@ -18,7 +18,7 @@ export default function MessageBubble({ message: m }: MessageBubbleProps) {
             <p className="">{m.message}</p>
           </div>
           <p className="px-2 text-xs italic text-gray-400">
-            {new Date(m.createdAt).toLocaleString()}
+            {/* {new Date(m.createdAt).toLocaleString()} */}
           </p>
         </div>
       </div>

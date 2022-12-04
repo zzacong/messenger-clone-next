@@ -1,15 +1,16 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
+import { type Message } from '$types';
 
-import { fetchMessages } from '$lib/fetch-messages';
+import useMessages from '$lib/hooks/useMessages';
 import MessageBubble from './MessageBubble';
 
-export default function MessageList() {
-  const { data: messages } = useQuery({
-    queryKey: ['get-messages'],
-    queryFn: fetchMessages,
-  });
+type MessageListProps = {
+  initialMessages?: Message[];
+};
+
+export default function MessageList({ initialMessages }: MessageListProps) {
+  const { data: messages } = useMessages({ initialData: initialMessages });
 
   return (
     <div className="mx-auto max-w-2xl space-y-5 px-5 pb-32 pt-5 xl:max-w-4xl">

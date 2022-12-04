@@ -1,17 +1,16 @@
-import { redis } from '$server/db/redis';
+import { getMessages } from '$server/common/get-messages';
 
 import ChatInput from './ChatInput';
 import MessageList from './MessageList';
 
 export default async function HomePage() {
-  const member = await redis.srandmember<string>('nextjs13');
+  const messages = await getMessages();
 
   return (
     <>
       <main className="">
-        <MessageList />
+        <MessageList initialMessages={messages} />
         <ChatInput />
-        {member}
       </main>
     </>
   );

@@ -1,9 +1,10 @@
 import { type Message } from '$types';
 
 import { useSession } from 'next-auth/react';
+import { useMemo } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useMemo } from 'react';
+import TimeAgo from 'react-timeago';
 
 type MessageBubbleProps = { message: Message };
 
@@ -43,9 +44,9 @@ export default function MessageBubble({ message: m }: MessageBubbleProps) {
             <p className="">{m.message}</p>
           </div>
 
-          {/* <p className={clsx('px-2 text-xs italic text-gray-400', isMe && 'text-right')}>
-            {new Date(m.createdAt).toLocaleString()}
-          </p> */}
+          <p className={clsx('px-2 text-xs italic text-gray-400', isMe && 'text-right')}>
+            <TimeAgo date={new Date(m.createdAt)} />
+          </p>
         </div>
       </div>
     </div>

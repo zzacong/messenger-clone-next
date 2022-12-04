@@ -20,6 +20,8 @@
     "clsx": "^1.2.1",
     "next": "13.0.6",
     "next-auth": "^4.15.1",
+    "pusher": "5.1.1-beta",
+    "pusher-js": "^7.5.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "superjson": "1.9.1",

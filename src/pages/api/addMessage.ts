@@ -2,6 +2,7 @@ import type { NextApiHandler } from 'next';
 import { type Message, messageSchema } from '$types';
 
 import { redis } from '$server/db/redis';
+import { pusherServerClient } from '$server/common/pusher';
 
 type Data = Message;
 const handler: NextApiHandler<Data> = async (req, res) => {
@@ -15,6 +16,8 @@ const handler: NextApiHandler<Data> = async (req, res) => {
 
   // push to upstash redis
   await redis.hset('messages', { [message.id]: JSON.stringify(newMessage) });
+  pusherServerClient.trigger('messages-channel', 'new-message', newMessage);
+
   res.status(201).json(newMessage);
 };
 

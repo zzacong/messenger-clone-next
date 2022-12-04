@@ -24,7 +24,7 @@ export default function ChatInput() {
   const sendMessageMut = useMutation({
     mutationFn: sendMessageToUpstash,
     // When mutate is called:
-    onMutate: async newTodo => {
+    onMutate: async newMessage => {
       // Cancel any outgoing refetches
       // (so they don't overwrite our optimistic update)
       await queryClient.cancelQueries({ queryKey: ['get-messages'] });
@@ -32,14 +32,14 @@ export default function ChatInput() {
       const previousMessages = queryClient.getQueryData<Message[]>(['get-messages']);
       // Optimistically update to the new value
       queryClient.setQueryData<Message[]>(['get-messages'], old =>
-        old ? [...old, newTodo] : [newTodo]
+        old ? [...old, newMessage] : [newMessage]
       );
       // Return a context object with the snapshotted value
       return { previousMessages };
     },
     // If the mutation fails,
     // use the context returned from onMutate to roll back
-    onError: (err, newTodo, ctx) => {
+    onError: (err, newMessage, ctx) => {
       queryClient.setQueryData(['get-messages'], ctx?.previousMessages);
     },
     // Always refetch after error or success:

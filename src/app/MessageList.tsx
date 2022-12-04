@@ -4,6 +4,7 @@ import { type Message } from '$types';
 
 import useMessages from '$lib/hooks/useMessages';
 import MessageBubble from './MessageBubble';
+import usePusher from '$lib/hooks/usePusher';
 
 type MessageListProps = {
   initialMessages?: Message[];
@@ -11,6 +12,8 @@ type MessageListProps = {
 
 export default function MessageList({ initialMessages }: MessageListProps) {
   const { data: messages } = useMessages({ initialData: initialMessages });
+
+  usePusher();
 
   return (
     <div className="mx-auto max-w-2xl space-y-5 px-5 pb-32 pt-5 xl:max-w-4xl">

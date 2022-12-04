@@ -1,5 +1,3 @@
-'use client';
-
 import { type Message } from '$types';
 import { useQuery, type UseQueryOptions } from '@tanstack/react-query';
 import { fetchMessages } from '$lib/fetch-messages';

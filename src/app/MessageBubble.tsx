@@ -33,9 +33,9 @@ export default function MessageBubble({ message: m }: MessageBubbleProps) {
             <p className="">{m.message}</p>
           </div>
 
-          <p className={clsx('px-2 text-xs italic text-gray-400', isMe && 'text-right')}>
+          {/* <p className={clsx('px-2 text-xs italic text-gray-400', isMe && 'text-right')}>
             {new Date(m.createdAt).toLocaleString()}
-          </p>
+          </p> */}
         </div>
       </div>
     </div>

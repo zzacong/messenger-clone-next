@@ -12,7 +12,7 @@ const handler: NextApiHandler<Data> = async (req, res) => {
     return;
   }
 
-  const session = await getServerAuthSession(req, res);
+  const session = await getServerAuthSession({ req, res });
   if (!session) return res.status(401).end();
 
   const messages = await getMessages();

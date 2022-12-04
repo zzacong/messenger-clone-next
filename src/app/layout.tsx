@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={clsx(raleway.variable, notoSansMono.variable)}>
       <head />
-      <body>
+      <body className="flex min-h-screen flex-col">
         <ClientProvider>
           <Header />
           {children}

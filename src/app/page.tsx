@@ -5,6 +5,8 @@ import MessageList from './MessageList';
 
 export default async function HomePage() {
   const messages = await getMessages();
+  // mock loading UI
+  await new Promise(res => setTimeout(res, 1000));
 
   return (
     <>

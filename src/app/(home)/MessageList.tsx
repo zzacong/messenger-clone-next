@@ -5,6 +5,7 @@ import { type Message } from '$types';
 import useMessages from '$lib/hooks/useMessages';
 import MessageBubble from './MessageBubble';
 import usePusher from '$lib/hooks/usePusher';
+import { endOfMessagesRef } from '$lib/scroll-to-bottom';
 
 type MessageListProps = {
   initialMessages?: Message[];
@@ -22,6 +23,7 @@ export default function MessageList({ initialMessages }: MessageListProps) {
           <MessageBubble message={m} />
         </div>
       ))}
+      <div aria-hidden="true" className="mb-2" ref={endOfMessagesRef}></div>
     </div>
   );
 }

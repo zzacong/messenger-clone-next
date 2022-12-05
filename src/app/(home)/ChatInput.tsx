@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import cuid from 'cuid';
 import { useSession } from 'next-auth/react';
 import { generateImageUrl } from '$lib/random-image-url';
+import { endOfMessagesRef, scrollToBottom } from '$lib/scroll-to-bottom';
 
 const sendMessageToUpstash = async (message: Message) => {
   const res = await fetch('/api/addMessage', {
@@ -37,6 +38,7 @@ export default function ChatInput() {
       queryClient.setQueryData<Message[]>(['get-messages'], old =>
         old ? [...old, newMessage] : [newMessage]
       );
+      scrollToBottom(endOfMessagesRef);
       // Return a context object with the snapshotted value
       return { previousMessages };
     },
@@ -48,6 +50,7 @@ export default function ChatInput() {
     // Always refetch after error or success:
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ['get-messages'] });
+      scrollToBottom(endOfMessagesRef);
     },
   });
 
@@ -68,7 +71,7 @@ export default function ChatInput() {
         email: session.user.email!,
         createdAt: Date.now(),
       };
-      await sendMessageMut.mutateAsync(message);
+      sendMessageMut.mutate(message);
     },
     [input, sendMessageMut, session?.user]
   );

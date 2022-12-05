@@ -44,7 +44,7 @@ async function Header() {
 
         <Link
           href="/auth/signin"
-          className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-700"
+          className="rounded bg-blue-500 py-2 px-4 font-bold text-white hover:bg-blue-600"
         >
           Sign In
         </Link>

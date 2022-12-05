@@ -65,7 +65,7 @@ export default function ChatInput() {
         id: cuid(),
         message: messageToSend,
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        username: session.user.name!,
+        username: session.user.name ?? session.user.email!,
         profilePic: session.user.image ?? generateImageUrl(),
         // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
         email: session.user.email!,
@@ -92,7 +92,7 @@ export default function ChatInput() {
       <button
         type="submit"
         disabled={!input}
-        className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+        className="rounded bg-blue-500 px-4 py-2 font-bold text-white hover:bg-blue-600 disabled:cursor-not-allowed disabled:opacity-50"
       >
         Send
       </button>

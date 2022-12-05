@@ -25,7 +25,9 @@ async function Header() {
           <div>
             <p>
               <span className="block text-blue-400">Logged in as:</span>
-              <span className="block text-lg font-bold">{session.user.name}</span>
+              <span className="block text-lg font-bold">
+                {session.user.name ?? session.user.email ?? 'n/a'}
+              </span>
             </p>
           </div>
         </div>

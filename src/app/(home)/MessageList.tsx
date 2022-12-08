@@ -1,11 +1,11 @@
 'use client';
 
 import { type Message } from '$types';
-
 import useMessages from '$lib/hooks/useMessages';
-import MessageBubble from './MessageBubble';
 import usePusher from '$lib/hooks/usePusher';
 import { endOfMessagesRef } from '$lib/scroll-to-bottom';
+
+import MessageBubble from './MessageBubble';
 
 type MessageListProps = {
   initialMessages?: Message[];

@@ -1,8 +1,7 @@
-import { type Message } from '$types';
-
 import { useEffect } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
+import { type Message } from '$types';
 import { pusherClient } from '$lib/pusher';
 
 export default function usePusher() {

@@ -1,11 +1,11 @@
 'use client';
 
-import { type Message, messageSchema } from '$types';
-
 import { useCallback, useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import cuid from 'cuid';
 import { useSession } from 'next-auth/react';
+
+import { type Message, messageSchema } from '$types';
 import { generateImageUrl } from '$lib/random-image-url';
 import { endOfMessagesRef, scrollToBottom } from '$lib/scroll-to-bottom';
 

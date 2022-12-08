@@ -1,16 +1,17 @@
-import { type Message } from '$types';
+'use client';
 
 import { useSession } from 'next-auth/react';
-import { useMemo } from 'react';
 import clsx from 'clsx';
 import Image from 'next/image';
 import TimeAgo from 'react-timeago';
+
+import { type Message } from '$types';
 
 type MessageBubbleProps = { message: Message };
 
 export default function MessageBubble({ message: m }: MessageBubbleProps) {
   const { data: session } = useSession();
-  const isMe = useMemo(() => session?.user?.email === m.email, [m.email, session?.user?.email]);
+  const isMe = session?.user?.email === m.email;
 
   return (
     <div className={clsx('flex w-fit gap-2', isMe && 'ml-auto')}>

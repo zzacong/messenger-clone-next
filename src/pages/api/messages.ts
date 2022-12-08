@@ -1,6 +1,6 @@
 import { type NextApiHandler } from 'next';
-import { type Message } from '$types';
 
+import { type Message } from '$types';
 import { getMessages } from '$server/common/get-messages';
 import { getServerAuthSession } from '$server/common/get-server-auth-session';
 

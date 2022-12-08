@@ -1,6 +1,6 @@
 import { type NextApiHandler } from 'next';
-import { type Message, messageSchema } from '$types';
 
+import { type Message, messageSchema } from '$types';
 import { redis } from '$server/db/redis';
 import { pusherServerClient } from '$server/common/pusher';
 import { getServerAuthSession } from '$server/common/get-server-auth-session';

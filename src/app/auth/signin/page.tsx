@@ -1,11 +1,11 @@
 import { type NextApiRequest } from 'next';
-
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { getCsrfToken, getProviders } from 'next-auth/react';
 
 import { getServerAuthSession } from '$server/common/get-server-auth-session';
+
 import LoginButtons from './LoginButtons';
 
 export default async function SignInPage() {

@@ -1,10 +1,9 @@
 import NextAuth, { type NextAuthOptions } from 'next-auth';
 import FacebookProvider from 'next-auth/providers/facebook';
 import EmailProvider from 'next-auth/providers/email';
+import { UpstashRedisAdapter } from '@next-auth/upstash-redis-adapter';
 
 import { env } from '$env/server.mjs';
-
-import { UpstashRedisAdapter } from '@next-auth/upstash-redis-adapter';
 import { redis } from '$server/db/redis';
 
 export const authOptions: NextAuthOptions = {
